@@ -130,8 +130,9 @@ Incorpore el Contenedor Liviano Guice dentro del proyecto:
 
 
 # Desarrollo Lab4
-
+Aqui vemos las evidencias de compilacion, ejecucion y las pruebas. Por ultimo dejamos la evidencia del Ahorcado con iniciacion BonusScore, Spanish , SpanishDictionaryDataSource y por ultimo el panel Colorido.
 
 ![](imagenes/compile.PNG)
 ![](imagenes/package.PNG)
 ![](imagenes/test.PNG)
+![](imagenes/gui.PNG)
