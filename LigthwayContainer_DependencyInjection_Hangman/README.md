@@ -131,3 +131,7 @@ Incorpore el Contenedor Liviano Guice dentro del proyecto:
 
 # Desarrollo Lab4
 
+
+![](imagenes/compile.PNG)
+![](imagenes/package.PNG)
+![](imagenes/test.PNG)
