@@ -32,4 +32,6 @@ public class HangmanDefaultFactoryMethod extends HangmanFactoryMethod {
         Injector injector = Guice.createInjector(new HangmanFactoryServices());
         return injector.getInstance(GameScore.class);
     }
+
+
 }

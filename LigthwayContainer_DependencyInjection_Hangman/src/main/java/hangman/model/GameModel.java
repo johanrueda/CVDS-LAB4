@@ -12,10 +12,15 @@
 ****************************************************************/ 
 package hangman.model;
 
+import hangman.exceptions.hangmanException;
 import hangman.model.dictionary.HangmanDictionary;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 
 public class GameModel {
@@ -31,17 +36,19 @@ public class GameModel {
     private Scanner scan;
     private String randomWord;
     private char[] randomWordCharArray;
+    private GameScore inyectado;
     
     
    
-    public GameModel(HangmanDictionary dictionary){
+    public GameModel(HangmanDictionary dictionary, GameScore gamesScore){
         //this.dictionary = new EnglishDictionaryDataSource();
         this.dictionary=dictionary;
         randomWord = selectRandomWord();
         randomWordCharArray = randomWord.toCharArray();
         incorrectCount = 0;
         correctCount = 0;
-        gameScore = 100;
+        gameScore = gamesScore.getPuntaje();;
+        inyectado = gamesScore;
         
     }
     
@@ -52,7 +59,9 @@ public class GameModel {
         randomWordCharArray = randomWord.toCharArray();
         incorrectCount = 0;
         correctCount = 0;
-        gameScore = 100;
+        gameScore = inyectado.getPuntaje();
+
+
     }
 
     //setDateTime
@@ -64,7 +73,7 @@ public class GameModel {
     //method: makeGuess
     //purpose: check if user guess is in string. Return a
     // list of positions if character is found in string
-    public ArrayList<Integer> makeGuess(String guess){
+    public ArrayList<Integer> makeGuess(String guess) throws hangmanException {
         char guessChar = guess.charAt(0);
         ArrayList<Integer> positions = new ArrayList<>();
         for(int i = 0; i < randomWordCharArray.length; i++){
@@ -74,9 +83,10 @@ public class GameModel {
         }
         if(positions.size() == 0){
             incorrectCount++;
-            gameScore -= 10;
+            gameScore = inyectado.calculateScore(correctCount,incorrectCount);
         } else {
             correctCount += positions.size();
+            gameScore = inyectado.calculateScore(correctCount,incorrectCount);
         }
         return positions;
         
@@ -97,8 +107,8 @@ public class GameModel {
     
     //getScore
     //purpose: returns current score value
-    public int getScore() {
-        return gameScore;
+    public int getScore()  {
+        return inyectado.calculateScore(correctCount,incorrectCount);
     }
 
     //name: selectRandomWord()

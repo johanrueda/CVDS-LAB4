@@ -7,6 +7,7 @@ public class OriginalScore implements GameScore{
      * @pos el puntaje mayor o igual a cero
      * @param correctCount puntuacion correcta
      * @param incorrectCount puntacion incorrecta
+     * @return
      */
     @Override
     public int calculateScore(int correctCount, int incorrectCount) {
@@ -16,4 +17,9 @@ public class OriginalScore implements GameScore{
         }
         return puntaje;
     }
+    @Override
+    public int getPuntaje(){
+        return 100;
+    }
+
 }
